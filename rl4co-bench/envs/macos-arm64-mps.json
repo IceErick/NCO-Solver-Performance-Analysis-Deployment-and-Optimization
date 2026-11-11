@@ -1,0 +1,88 @@
+{
+  "schema": "rl4co-bench/env-capture@1",
+  "captured_at": "2026-10-08T23:05:05+0800",
+  "host": {
+    "os": "Darwin 27.0.0",
+    "os_version": "Darwin Kernel Version 27.0.0: Tue Aug 11 21:02:16 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T8112",
+    "machine": "arm64",
+    "processor": "arm",
+    "hostname": "Ericks-Laptop.local",
+    "os_detail": "27.0.1",
+    "os_build": "26A434",
+    "chip": "Apple M2",
+    "model": "Mac14,2",
+    "ram_bytes": 8589934592,
+    "cpu_count": 8,
+    "p_cores": "4",
+    "e_cores": "4"
+  },
+  "python": {
+    "version": "3.11.17",
+    "executable": "/Users/erickli/miniconda3/envs/rl4co/bin/python",
+    "prefix": "/Users/erickli/miniconda3/envs/rl4co"
+  },
+  "packages": {
+    "torch": "2.14.1",
+    "tensordict": "0.14.2",
+    "torchrl": "0.14.0",
+    "lightning": "2.6.6",
+    "pytorch_lightning": "2.6.6",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "hydra": "1.3.7",
+    "omegaconf": "2.3.1",
+    "einops": "0.8.2",
+    "matplotlib": "3.11.2",
+    "wandb": "0.30.0",
+    "rl4co": "0.7.0"
+  },
+  "rl4co": {
+    "version": "0.7.0",
+    "location": "/Users/erickli/Library/CloudStorage/OneDrive-TheUniversityofNottinghamNingboChina/Code/rl4co/rl4co",
+    "editable": true,
+    "git_head": "dbd18e7a06ef9c8e35f54ab93adf6136ceeffad0",
+    "repo_root": "/Users/erickli/Library/CloudStorage/OneDrive-TheUniversityofNottinghamNingboChina/Code/rl4co",
+    "git_tracked_modified": false,
+    "git_tracked_diff": null,
+    "git_untracked": [
+      "CLAUDE.md",
+      "win_check.py"
+    ],
+    "git_describe": "v0.7.0"
+  },
+  "backends": {
+    "cuda_available": false,
+    "cuda_built": null,
+    "cudnn_version": null,
+    "mps_available": true,
+    "mps_built": true,
+    "threads": 4,
+    "device_name": "Apple GPU (Metal)"
+  },
+  "extras": {
+    "numba": "0.68.0",
+    "pyvrp": "0.14.0 (via metadata)",
+    "vrplib": "2.2.0 (via metadata)",
+    "torch_geometric": "2.8.0.post1",
+    "pytest": "9.1.1",
+    "xdist": "3.8.0",
+    "ruff": "0.16.10 (via metadata)",
+    "pre_commit": "4.6.2 (via metadata)",
+    "tsp_local_search": "AVAILABLE"
+  },
+  "calibration": {
+    "n": 4096,
+    "dtype": "float32",
+    "mps": {
+      "matmul_ms": 57.23,
+      "tflops": 2.4,
+      "iters": 20
+    },
+    "cpu": {
+      "matmul_ms": 121.92,
+      "tflops": 1.13,
+      "iters": 3
+    },
+    "matmul_precision": "highest"
+  }
+}

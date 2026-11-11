@@ -1,0 +1,108 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Anonymous}(2026)]{aet2026}
+{Anonymous}.
+\newblock An amortized efficiency threshold for comparing neural and heuristic
+  solvers, 2026.
+\newblock Author list to be completed.
+
+\bibitem[Bai et~al.(2023)Bai, Chen, Chen, Cui, Gong, He, Jiang, Jin, Jin,
+  Kendall, et~al.]{bai2023analytics}
+R.~Bai, X.~Chen, Z.-L. Chen, T.~Cui, S.~Gong, W.~He, X.~Jiang, H.~Jin, J.~Jin,
+  G.~Kendall, et~al.
+\newblock Analytics and machine learning in vehicle routing research.
+\newblock \emph{International Journal of Production Research}, 61\penalty0
+  (1):\penalty0 4--30, 2023.
+
+\bibitem[Berto et~al.(2023)Berto, Hua, Park, Luttmann, Ma, Bu, Wang, Ye, Kim,
+  Choi, et~al.]{berto2023rl4co}
+F.~Berto, C.~Hua, J.~Park, L.~Luttmann, Y.~Ma, F.~Bu, J.~Wang, H.~Ye, M.~Kim,
+  S.~Choi, et~al.
+\newblock {RL4CO}: an extensive reinforcement learning for combinatorial
+  optimization benchmark, 2023.
+
+\bibitem[Duan et~al.(2023)Duan, Wang, Yang, Shi, and Zhan]{duan2023htsp}
+L.~Duan, J.~Wang, Z.~Yang, Y.~Shi, and D.-C. Zhan.
+\newblock {H-TSP}: Hierarchically solving the large-scale travelling salesman
+  problem.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}, 2023.
+
+\bibitem[Helsgaun(2017)]{helsgaun2017lkh3}
+K.~Helsgaun.
+\newblock An extension of the {Lin--Kernighan--Helsgaun} {TSP} solver for
+  constrained traveling salesman and vehicle routing problems.
+\newblock Technical report, Roskilde University, 2017.
+
+\bibitem[Hottung et~al.(2022)Hottung, Kwon, and Tierney]{hottung2022eas}
+A.~Hottung, Y.-D. Kwon, and K.~Tierney.
+\newblock Efficient active search for combinatorial optimization problems.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2022.
+
+\bibitem[Joshi et~al.(2019)Joshi, Laurent, and Bresson]{joshi2019gnn}
+C.~K. Joshi, T.~Laurent, and X.~Bresson.
+\newblock An efficient graph convolutional network technique for the travelling
+  salesman problem, 2019.
+
+\bibitem[Kool et~al.(2019)Kool, van Hoof, and Welling]{kool2019attention}
+W.~Kool, H.~van Hoof, and M.~Welling.
+\newblock Attention, learn to solve routing problems!
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2019.
+
+\bibitem[Kwon et~al.(2020)Kwon, Choo, Kim, Yoon, Gwon, and Min]{kwon2020pomo}
+Y.-D. Kwon, J.~Choo, B.~Kim, I.~Yoon, Y.~Gwon, and S.~Min.
+\newblock {POMO}: Policy optimization with multiple optima for reinforcement
+  learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2020.
+
+\bibitem[Li et~al.(2024)Li, Guo, Wang, Zha, and Yan]{li2024fastt2t}
+Y.~Li, J.~Guo, R.~Wang, H.~Zha, and J.~Yan.
+\newblock {Fast T2T}: Optimization consistency speeds up diffusion-based
+  training-to-testing solving for combinatorial optimization.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2024.
+
+\bibitem[Luo et~al.(2024)Luo, Lin, Liu, Zhang, and Wang]{luo2024icam}
+F.~Luo, X.~Lin, F.~Liu, Q.~Zhang, and Z.~Wang.
+\newblock Instance-conditioned adaptation for large-scale generalization of
+  neural combinatorial optimization, 2024.
+
+\bibitem[Ma et~al.(2021)Ma, Li, Cao, Song, Zhang, Chen, and Tang]{ma2021dact}
+Y.~Ma, J.~Li, Z.~Cao, W.~Song, L.~Zhang, Z.~Chen, and J.~Tang.
+\newblock Learning to iteratively solve routing problems with dual-aspect
+  collaborative transformer.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2021.
+
+\bibitem[Sun and Yang(2023)]{sun2023difusco}
+Z.~Sun and Y.~Yang.
+\newblock {DIFUSCO}: Graph-based diffusion solvers for combinatorial
+  optimization, 2023.
+
+\bibitem[Wang et~al.(2025)Wang, Li, Yan, and Chang]{wang2025strudico}
+Y.~Wang, Y.~Li, J.~Yan, and Y.~Chang.
+\newblock {StruDiCO}: Structured denoising diffusion with gradient-free
+  inference-stage boosting for memory and time efficient combinatorial
+  optimization.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2025.
+
+\bibitem[Wouda and Lan(2024)]{wouda2024pyvrp}
+N.~A. Wouda and L.~Lan.
+\newblock {PyVRP}: A high-performance {VRP} solver package.
+\newblock \emph{INFORMS Journal on Computing}, 2024.
+
+\bibitem[Ye et~al.(2023)Ye, Wang, Liang, Liang, Cao, Li, and Li]{ye2024glop}
+H.~Ye, J.~Wang, Z.~Liang, Y.~Liang, Z.~Cao, Y.~Li, and F.~Li.
+\newblock {GLOP}: Learning global partition and local construction for solving
+  large-scale routing problems in real-time, 2023.
+
+\end{thebibliography}
