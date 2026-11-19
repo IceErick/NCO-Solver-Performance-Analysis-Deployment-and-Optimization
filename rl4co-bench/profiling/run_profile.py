@@ -172,9 +172,10 @@ def inference(torch, TensorDict, policy, env, coords, device, case, *, annotate)
 
     with scope("benchmark.inference"):
         with scope("benchmark.h2d"):
-            batch = TensorDict({"locs": coords.to(device)}, batch_size=[case.b])
+            # TSPEnv uses TensorDict.device to allocate its action mask.
+            batch = TensorDict({"locs": coords.to(device)}, batch_size=[case.b], device=device)
         with scope("benchmark.reset"):
-            state = env.reset(batch)
+            state = env.reset(batch).to(device)
         with scope("benchmark.policy"):
             result = policy(state, env, phase="test", max_steps=case.n, **kwargs)
         with scope("benchmark.d2h"):

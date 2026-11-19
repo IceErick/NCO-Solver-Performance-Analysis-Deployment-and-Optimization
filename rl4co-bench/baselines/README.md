@@ -46,6 +46,21 @@ done
 python -B rl4co-bench/baselines/run.py --dataset cvrp100 --output "$reference_out/cvrp100-reference.json"
 ```
 
+For a faster quality reference run, use `run_all.py` to split each dataset into
+contiguous shards. Run these CPU workers in a separate session from any
+calibrated GPU profiling.
+
+```bash
+python -B rl4co-bench/baselines/run_all.py --jobs 12 --lkh "$lkh_bin" --output-dir "$reference_out"
+```
+
+The orchestrator validates dataset and solver provenance, row coverage, and
+shard agreement before publishing each complete JSON file. Use
+`--datasets tsp100 cvrp100` to select any subset or to resume after earlier
+datasets finished. It refuses to overwrite existing reference files. Merged
+results mark per-instance `elapsed_ms` as diagnostic because concurrent workers
+affect latency and throughput.
+
 Use `--limit 2` for a smoke check, or `--start N --limit M` for a shard. Use
 distinct output paths. The defaults give LKH-3 10 runs, each with at most N
 trials for N cities, and PyVRP 10,000 iterations. Both receive seed 1. Pin these

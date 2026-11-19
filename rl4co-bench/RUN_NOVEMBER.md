@@ -97,6 +97,16 @@ done
 python -B rl4co-bench/baselines/run.py --dataset cvrp100 --output "$REF/cvrp100-reference.json"
 ```
 
+For reference costs, the same inputs and solver budgets can run in parallel:
+
+```bash
+python -B rl4co-bench/baselines/run_all.py --jobs 12 --lkh "$lkh_bin" --output-dir "$REF"
+```
+
+Choose a new output directory for this alternative. The parallel runner
+checks that the full instance set was solved before publishing each result.
+Its per-instance times are diagnostic because the workers share the CPU.
+
 For long jobs, use a `tmux` session so a dropped SSH connection does not end
 the run. Archive the raw outputs and JSON manifests together. T1 records
 heuristic reference values for each fixed instance. T2 attributes measured
