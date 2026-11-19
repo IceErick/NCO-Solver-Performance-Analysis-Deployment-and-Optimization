@@ -1,0 +1,12 @@
+{
+  "schema": "rl4co-bench/profile-sweep@1",
+  "seed": 73911,
+  "cpu_threads": 1,
+  "warmup_batches": 1,
+  "timed_batches": 2,
+  "profile_batches": 1,
+  "cases": [
+    {"n": 100, "b": 1, "k": 1},
+    {"n": 100, "b": 2, "k": 4}
+  ]
+}

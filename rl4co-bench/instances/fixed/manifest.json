@@ -1,0 +1,38 @@
+{
+  "generation": "PCG64; uniform 24-bit unit-square coordinates; CVRP100 integer demand 1\u20139",
+  "schema_version": 1,
+  "sets": {
+    "cvrp100": {
+      "count": 1024,
+      "file": "cvrp100.npz",
+      "problem": "cvrp",
+      "seed": 2026111910,
+      "sha256": "9769808d08affd94fd7ab24d617db7522546a211dff17e1e84f80a9670a765da",
+      "size": 100
+    },
+    "tsp100": {
+      "count": 1024,
+      "file": "tsp100.npz",
+      "problem": "tsp",
+      "seed": 2026111900,
+      "sha256": "655dd811865a5cfbd6ed30c6fc9f971783153db7bdc97cfb108cc8ebb25e4c90",
+      "size": 100
+    },
+    "tsp200": {
+      "count": 1024,
+      "file": "tsp200.npz",
+      "problem": "tsp",
+      "seed": 2026111902,
+      "sha256": "78f9bf722a1676313a9038a7ae4ee6d28fb47becd979c848d254c27290733a29",
+      "size": 200
+    },
+    "tsp50": {
+      "count": 1024,
+      "file": "tsp50.npz",
+      "problem": "tsp",
+      "seed": 2026111950,
+      "sha256": "bd59e9491934ee8055dde056acb8f2ca62b6039f8ca76a5be5fcec0aee17cda1",
+      "size": 50
+    }
+  }
+}
