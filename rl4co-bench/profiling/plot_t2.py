@@ -56,7 +56,6 @@ def plot(cases: Path, output: Path) -> None:
             gpu.plot(x[offset:], values[offset:], marker="o", color=colour, label=legend)
             if offset:
                 gpu.scatter(x[0], values[0], color=colour, marker="o", zorder=3)
-        gpu.set_ylim(bottom=0)
         lower = [0.0] * len(x)
         for metric, legend, colour in HOST_SERIES:
             values = [float(row[metric]) for row in selected]
@@ -70,6 +69,8 @@ def plot(cases: Path, output: Path) -> None:
             ax.spines[["top", "right"]].set_visible(False)
         if key == "k" and labels[0] == "1":
             host.set_xticks(x, ["1\ngreedy", *labels[1:]])
+    highest_activity = max(float(row["device_busy_pct"]) for row in rows)
+    axes[0, 0].set_ylim(0, min(100, 1.12 * highest_activity))
     axes[0, 0].set_ylabel("Profiled GPU window (%)")
     axes[1, 0].set_ylabel("Profiled host thread (%)")
     axes[0, 0].legend(loc="upper left", bbox_to_anchor=(0, 1.48), ncols=2, frameon=False)
