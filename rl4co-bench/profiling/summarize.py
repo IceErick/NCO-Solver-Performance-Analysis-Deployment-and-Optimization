@@ -166,7 +166,8 @@ def percentile95(values: list[float]) -> float:
 def case_metrics(folder: Path, metadata: dict, *, measurement: bool) -> dict:
     if metadata.get("measurement") is not measurement:
         raise ValueError(f"Run and case measurement classification disagree in {folder}")
-    result = {"case": folder.name, **{key: metadata[key] for key in ("n", "b", "k", "status")}}
+    fields = ("n", "b", "k", "decode_type", "status")
+    result = {"case": folder.name, **{key: metadata[key] for key in fields}}
     if metadata["status"] != "ok":
         if metadata["status"] not in ("oom", "failed"):
             raise ValueError(f"Case in {folder} has not finished")
@@ -211,7 +212,7 @@ METRICS = {
 def migration_rows(rows: list[dict]) -> list[dict]:
     migrations = []
     for axis in ("n", "b", "k"):
-        fixed = [key for key in ("n", "b", "k") if key != axis]
+        fixed = [key for key in ("n", "b", "k", "decode_type") if key != axis]
         groups = {}
         for row in rows:
             if row["status"] == "ok":
@@ -223,11 +224,13 @@ def migration_rows(rows: list[dict]) -> list[dict]:
             metrics = ("host_sync_pct", "host_launch_pct", "host_torch_runtime_pct", "host_python_pct",
                        "host_unattributed_pct", "device_busy_pct", "device_math_hint_pct")
             deltas = {
-                f"delta_{key}_points": larger[key] - smaller[key] if smaller.get(key) is not None else None
+                f"delta_{key}_points": larger[key] - smaller[key]
+                if smaller.get(key) is not None and larger.get(key) is not None else None
                 for key in metrics
             }
             migrations.append({
                 "axis": axis, "first": smaller["case"], "last": larger["case"],
+                "decode_type": smaller["decode_type"],
                 **deltas, "latency_p50_ratio": larger["p50_ms"] / smaller["p50_ms"],
             })
     return migrations
@@ -239,22 +242,31 @@ def markdown(run: dict, rows: list[dict], migrations: list[dict]) -> str:
         ("CUDA measurement on the NVIDIA workstation." if run["measurement"]
          else "**CPU smoke check only.** These results do not support CUDA or deployment conclusions."),
         "",
-        "| Case | Status | " + " | ".join(METRICS.values()) + " |",
-        "| " + " | ".join(["---"] * (len(METRICS) + 2)) + " |",
+        "| Case | Decode strategy | Status | " + " | ".join(METRICS.values()) + " |",
+        "| " + " | ".join(["---"] * (len(METRICS) + 3)) + " |",
     ]
     for row in rows:
-        values = [row["case"], row["status"], *(format_number(row.get(key)) for key in METRICS)]
+        values = [row["case"], row["decode_type"], row["status"], *(format_number(row.get(key)) for key in METRICS)]
         lines.append("| " + " | ".join(values) + " |")
+    strategies = {row["decode_type"] for row in rows}
+    if {"greedy", "multistart_greedy"} <= strategies:
+        lines += [
+            "",
+            "Moving from K=1 greedy to K>1 multistart greedy changes both the number of starts and the "
+            "decode strategy. Both appear in the case table. Controlled budget comparisons use only "
+            "cases sharing the same strategy.",
+        ]
     if migrations:
         lines += [
             "", "## How the time distribution changed", "",
-            "Each row varies one factor while holding the other two fixed. Shares are percentage-point changes.",
+            "Each row varies one factor while holding the other two and the decode strategy fixed. "
+            "Share changes are expressed in percentage points.",
             "",
-            "| Factor | First | Last | p50 ratio | Δ GPU busy | Δ GPU math hint | Δ host sync | Δ host launch | Δ host ops/runtime | Δ host Python | Δ host unattributed |",
-            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+            "| Factor | First | Last | Decode strategy | p50 ratio | Δ GPU busy | Δ GPU math hint | Δ host sync | Δ host launch | Δ host ops/runtime | Δ host Python | Δ host unattributed |",
+            "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
         ]
         for row in migrations:
-            keys = ("axis", "first", "last", "latency_p50_ratio", "delta_device_busy_pct_points",
+            keys = ("axis", "first", "last", "decode_type", "latency_p50_ratio", "delta_device_busy_pct_points",
                     "delta_device_math_hint_pct_points", "delta_host_sync_pct_points",
                     "delta_host_launch_pct_points", "delta_host_torch_runtime_pct_points",
                     "delta_host_python_pct_points", "delta_host_unattributed_pct_points")
@@ -264,6 +276,8 @@ def markdown(run: dict, rows: list[dict], migrations: list[dict]) -> str:
     lines += [
         "", "## Reading the trace", "",
         "- The p50, p95 and throughput use the unprofiled batch timings for a sequential workload.",
+        "- Mean tour length summarizes the instances seen in each case. Batch sizes can cover different "
+        "prefixes of the fixed input set. Pair the same instances for quality comparisons.",
         "- Host percentages partition the inference thread during the marked ranges. Nested ranges count once, "
         "in this order: explicit CUDA synchronization, launch calls, other traced operations and runtime calls, "
         "recorded project Python frames, and the unattributed remainder. Python frame time can include untraced work.",

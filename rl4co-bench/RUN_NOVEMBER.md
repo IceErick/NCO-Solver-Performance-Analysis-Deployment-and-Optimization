@@ -76,6 +76,12 @@ A successful run writes:
 - `$RUN/report/report.md`, `cases.csv`, and `migration.csv` for the latency
   and trace analysis. Use the CSVs to compare like-for-like slices of the sweep.
 
+Generate a figure that keeps host and GPU attribution on separate axes:
+
+```bash
+python -B rl4co-bench/profiling/plot_t2.py "$RUN/report/cases.csv" --output "$RUN/report/hotspots.png"
+```
+
 The `--case n100-b16-k1` option runs the anchor alone. Omit it for the full
 sweep. A partial run can diagnose setup and is separately identified by its
 recorded case list.
